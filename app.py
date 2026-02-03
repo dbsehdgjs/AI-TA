@@ -23,8 +23,8 @@ with st.sidebar:
     with st.expander("🔑 API 키 발급 방법 안내"):
         st.markdown("""        
         1. [Google AI Studio](https://aistudio.google.com/)에 접속합니다.
-        2. **[Get API key]** 버튼을 클릭합니다.
-        3. **[Create API key in new project]**를 선택합니다.
+        2. '[Get API key]' 버튼을 클릭합니다.
+        3. '[Create API key in new project]'를 선택합니다.
         4. 생성된 키를 복사하여 위 칸에 붙여넣으세요.
         """)
 
