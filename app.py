@@ -14,10 +14,19 @@ st.set_page_config(page_title="Civil AI Assistant", page_icon="🏗️")
 # --- 사이드바 설정 ---
 with st.sidebar:
     st.title("⚙️ 설정 및 보안")
-    # 사용자가 본인의 키를 입력하도록 유도
+    
+    # 1. API 키 입력창
     user_api_key = st.text_input("Gemini API Key", type="password", placeholder="AIza...")
     st.info("입력하신 키는 서버에 저장되지 않으며 현재 세션에서만 사용됩니다.")
-    st.markdown("[API 키 발급받기](https://aistudio.google.com/)")
+
+    # 2. API 키 발급 방법 안내 (접기/펼치기 기능)
+    with st.expander("🔑 API 키 발급 방법 안내"):
+        st.markdown("""        
+        1. [Google AI Studio](https://aistudio.google.com/)에 접속합니다.
+        2. **Get API key** 버튼을 클릭합니다.
+        3. **Create API key in new project**를 선택합니다.
+        4. 생성된 키를 복사하여 위 칸에 붙여넣으세요.
+        """)
 
 # --- 메인 화면 ---
 st.title("🏗️ 윤동헌과 AI 조교")
