@@ -34,6 +34,14 @@ st.write("문제를 업로드하세요. 풀이를 제공합니다.")
 
 uploaded_file = st.file_uploader("문제 이미지 업로드", type=['png', 'jpg', 'jpeg'])
 
+# 2. 사용자 요청사항 입력창 추가
+user_instruction = st.text_area(
+    "추가 요청사항 (선택)", 
+    placeholder="예: 2번 문제만 풀어줘, 풀이 과정을 더 상세하게 적어줘, 특정 단위(kN·m)로 결과를 알려줘 등",
+    help="이미지 외에 AI에게 전달할 추가 지시사항이 있다면 입력하세요."
+)
+
+
 if uploaded_file:
     image = Image.open(uploaded_file)
     st.image(image, caption='업로드된 이미지', use_container_width=True)
@@ -54,7 +62,7 @@ if uploaded_file:
                     [분야별 적용 설계기준 및 핵심 원칙]
                     1. 콘크리트(KDS 14 20): 극한변형률 εcu=0.0033(fck≤40MPa), 강도에 따른 η, β1 계수 적용.
                     1.1.
-                    2. 등가직사각형 응력블록 계수는 아래 값 따른다.
+                    **등가직사각형 응력블록 계수는 아래 값 따른다.**
                     - fck ≤ 40MPa: η = 1.0, β1 = 0.80
                     - fck = 50MPa: η = 0.97, β1 = 0.80
                     - fck = 60MPa: η = 0.95, β1 = 0.76
@@ -88,11 +96,11 @@ if uploaded_file:
                     - 수치가 주어지지 않은 상수는 KDS 표준값을 사용하고 그 근거를 밝힌다.
 
                     """
-                    
+                    user_prompt = f"사용자의 추가 요청사항: {user_instruction}\n\n위 요청사항을 반영하여 이미지를 분석하고 풀이해 주세요." if user_instruction else "이미지를 분석하여 풀이를 제공해 주세요."
                     # 지시하신 모델명 고정
                     response = client.models.generate_content(
                         model="gemini-3-flash-preview",
-                        contents=[prompt, image]
+                        contents=[prompt, user_prompt, image]
                     )
                     
                     st.success("풀이가 완료되었습니다!")
@@ -105,4 +113,4 @@ if uploaded_file:
                 st.caption(f"상세 에러 내용: {e}")
 
 # --- 하단 안내 ---
-st.caption("© 2026 Civil AI TA - Powered by Gemini 3 Flash Preview")
+st.caption("© 2026 Civil AI TA - Powered by Gemini 3 Flash Preview, Made by DH-YUN")
