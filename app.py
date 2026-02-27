@@ -140,5 +140,5 @@ if uploaded_file:
                 st.caption(f"상세 에러 내용: {e}")
 
 # --- 하단 안내 ---
-st.caption(f"""© 2026 Civil AI TA - Powered by Gemini 3 Flash Preview, Made by DH-YUN
+st.caption(f"""© 2026 Civil AI TA - Powered by Gemini 3 Flash Preview, Made by DH-YUN  
 latest update {datetime.date.today()}""")
