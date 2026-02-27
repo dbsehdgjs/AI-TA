@@ -4,7 +4,7 @@ from google import genai
 from PIL import Image
 import sys
 import io
-from datetime import datetime
+import datetime
 # 1. 인코딩 에러 방지 (한글 출력 보장)
 if sys.platform.startswith('win'):
     sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding='utf-8')
