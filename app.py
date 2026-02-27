@@ -4,7 +4,7 @@ from google import genai
 from PIL import Image
 import sys
 import io
-
+from datetime import datetime
 # 1. 인코딩 에러 방지 (한글 출력 보장)
 if sys.platform.startswith('win'):
     sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding='utf-8')
@@ -140,4 +140,5 @@ if uploaded_file:
                 st.caption(f"상세 에러 내용: {e}")
 
 # --- 하단 안내 ---
-st.caption("© 2026 Civil AI TA - Powered by Gemini 3 Flash Preview, Made by DH-YUN")
+st.caption(f"""© 2026 Civil AI TA - Powered by Gemini 3 Flash Preview, Made by DH-YUN
+latest update {date.today()}""")
