@@ -141,4 +141,4 @@ if uploaded_file:
 
 # --- 하단 안내 ---
 st.caption(f"""© 2026 Civil AI TA - Powered by Gemini 3 Flash Preview, Made by DH-YUN
-latest update {date.today()}""")
+latest update {datetime.date.today()}""")
