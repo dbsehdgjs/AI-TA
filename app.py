@@ -5,6 +5,57 @@ from PIL import Image
 import sys
 import io
 import datetime
+
+# --- 비밀번호 설정 ---
+def check_password():
+    """비밀번호가 맞는지 확인하고 결과를 세션 상태에 저장합니다."""
+    def password_entered():
+        """입력된 비밀번호를 검증합니다."""
+        if st.session_state["password"] == "3534":  # <--- 여기에 원하는 비밀번호를 입력하세요
+            st.session_state["password_correct"] = True
+            del st.session_state["password"]  # 보안을 위해 세션에서 비밀번호 삭제
+        else:
+            st.session_state["password_correct"] = False
+
+    if "password_correct" not in st.session_state:
+        # 처음 접속 시 비밀번호 입력창 표시
+        st.title("🔒 접속 보안")
+        st.text_input(
+            "이 서비스를 이용하려면 비밀번호를 입력하세요.", 
+            type="password", 
+            on_change=password_entered, 
+            key="password"
+        )
+        st.info("비밀번호를 모르시면 관리자(윤동헌)에게 문의하세요.")
+        return False
+    elif not st.session_state["password_correct"]:
+        # 비밀번호가 틀렸을 때
+        st.title("🔒 접속 보안")
+        st.text_input(
+            "비밀번호가 틀렸습니다. 다시 입력하세요.", 
+            type="password", 
+            on_change=password_entered, 
+            key="password"
+        )
+        st.error("😕 비밀번호가 일치하지 않습니다.")
+        return False
+    else:
+        # 비밀번호가 맞았을 때
+        return True
+
+# 비밀번호 확인 실행
+if not check_password():
+    st.stop()  # 비밀번호가 틀리면 아래 코드를 실행하지 않고 멈춤
+
+# --- 여기서부터 기존 메인 코드 시작 ---
+# (사이드바 설정, 메인 화면 등 기존 코드가 이 아래에 위치하게 됩니다.)
+
+
+
+
+
+
+
 # 1. 인코딩 에러 방지 (한글 출력 보장)
 if sys.platform.startswith('win'):
     sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding='utf-8')
