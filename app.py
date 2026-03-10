@@ -80,7 +80,7 @@ with st.sidebar:
         """)
 
 # --- 메인 화면 ---
-st.title("🏗️ 윤동헌과 AI 조교")
+st.title("🏗️ SmartMAST 구조 AI 조교")
 st.write("문제를 업로드하세요. 풀이를 제공합니다.")
 
 uploaded_file = st.file_uploader("문제 이미지 업로드", type=['png', 'jpg', 'jpeg'])
