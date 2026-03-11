@@ -184,7 +184,7 @@ if uploaded_file:
                     response = client.models.generate_content(
                         model=AImodel,
                         contents=[prompt, user_prompt, image],
-                        config=types.GenerateContentConfig(temperature=0.7)
+                        config={"temperature": 0.5}
                     )
                     
                     st.success("풀이가 완료되었습니다!")
