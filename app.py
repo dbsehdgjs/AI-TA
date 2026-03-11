@@ -184,7 +184,7 @@ if uploaded_file:
                     response = client.models.generate_content(
                         model=AImodel,
                         contents=[prompt, user_prompt, image],
-                        GenerationConfig={"temperature": 0.5}
+                        config=types.GenerateContentConfig(temperature=0.7)
                     )
                     
                     st.success("풀이가 완료되었습니다!")
@@ -197,5 +197,5 @@ if uploaded_file:
                 st.caption(f"상세 에러 내용: {e}")
 
 # --- 하단 안내 ---
-st.caption(f"""© 2026 Civil AI TA - Powered by {AImodel}], Made by DH-YUN  
+st.caption(f"""© 2026 Civil AI TA - Powered by {AImodel}, Made by DH-YUN  
 latest update {datetime.date.today()}""")
