@@ -8,7 +8,7 @@ import sys
 import io
 import datetime
 
-AImodel = "gemini-3.1-pro-preview"
+AImodel = "gemini-3-flash-preview"
 
 # --- 비밀번호 설정 ---
 def check_password():
