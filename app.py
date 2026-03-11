@@ -173,11 +173,12 @@ if uploaded_file:
                     - 모든 수식은 $...$ (LaTeX) 형식을 사용한다.
                     - 답변은 반드시 한국어로 작성하며, 문말은 "~이다.", "~다."로 끝낸다.
                     - 문제 이미지 내의 텍스트(지문) 정보와 그림(도식)의 수치나 표현이 서로 다를 경우, 반드시 '텍스트로 기술된 정보'를 최우선 기준으로 삼아 풀이한다.
+                    - 모든 계산은 자체적이고 내부적인 코드를 짜서 값이 유효(거의 같은 값이라고 볼 수 있는)하거나 같은 값이 나오는지 검산할 것.
                     """
                     user_prompt = f"사용자의 추가 요청사항: {user_instruction}\n\n위 요청사항을 반영하여 이미지를 분석하고 풀이해 주세요." if user_instruction else "이미지를 분석하여 풀이를 제공해 주세요."
                     # 지시하신 모델명 고정
                     response = client.models.generate_content(
-                        model="gemini-3-flash-preview",
+                        model="gemini-3.1-pro-preview",
                         contents=[prompt, user_prompt, image]
                     )
                     
