@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
+from google.genai.types import GenerationConfig
+import google.genai._interactions.types.generation_config_param
 import streamlit as st
 from google import genai
 from PIL import Image
 import sys
 import io
 import datetime
+
+AImodel = "gemini-3.1-pro-preview"
 
 # --- 비밀번호 설정 ---
 def check_password():
@@ -178,8 +182,9 @@ if uploaded_file:
                     user_prompt = f"사용자의 추가 요청사항: {user_instruction}\n\n위 요청사항을 반영하여 이미지를 분석하고 풀이해 주세요." if user_instruction else "이미지를 분석하여 풀이를 제공해 주세요."
                     # 지시하신 모델명 고정
                     response = client.models.generate_content(
-                        model="gemini-3.1-pro-preview",
-                        contents=[prompt, user_prompt, image]
+                        model=AImodel,
+                        contents=[prompt, user_prompt, image],
+                        GenerationConfig={"temperature": 0.5}
                     )
                     
                     st.success("풀이가 완료되었습니다!")
@@ -192,5 +197,5 @@ if uploaded_file:
                 st.caption(f"상세 에러 내용: {e}")
 
 # --- 하단 안내 ---
-st.caption(f"""© 2026 Civil AI TA - Powered by Gemini 3 Flash Preview, Made by DH-YUN  
+st.caption(f"""© 2026 Civil AI TA - Powered by {AImodel}], Made by DH-YUN  
 latest update {datetime.date.today()}""")
